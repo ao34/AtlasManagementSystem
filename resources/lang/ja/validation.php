@@ -40,8 +40,7 @@ return [
     'digits_between'       => ':attributeは:min桁から:max桁の間で指定してください。',
     'dimensions'           => ':attributeの図形サイズが正しくありません。',
     'distinct'             => ':attributeには異なった値を指定してください。',
-    'email'                => ':attributeには、有効なメールアドレスを指定してください。',
-    // 'email'                => ':attributeには、有効なメールアドレスを指定してください。',
+    'email'                => ':attributeは、有効なメールアドレスを指定してください。',
     'ends_with'            => 'メール形式で入力してください。',
     'exists'               => '選択された:attributeは正しくありません。',
     'file'                 => ':attributeにはファイルを指定してください。',
@@ -137,6 +136,12 @@ return [
     */
 
     'custom' => [
+        'over_name_kana' => [
+            'regex' => ':attributeはカタカナで入力してください。',
+        ],
+        'under_name_kana' => [
+            'regex' => ':attributeはカタカナで入力してください。',
+        ],
         '属性名' => [
             'ルール名' => 'カスタムメッセージ',
         ],
@@ -156,6 +161,14 @@ return [
     'attributes' => [
         'mail_address' => 'メールアドレス',
         'birth_day' => '生年月日',
-    ],
+        'over_name' => '姓',
+        'under_name' => '名',
+        'over_name_kana' => 'セイ',
+        'under_name_kana' => 'メイ',
+        'sex' => '性別',
+        'role' => '権限',
+        'password' => 'パスワード',
+
+     ],
 
 ];
