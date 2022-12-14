@@ -45,10 +45,17 @@ class PostsController extends Controller
 
     public function postInput(){
         $main_categories = MainCategory::get();
-        return view('authenticated.bulletinboard.post_create', compact('main_categories'));
+        $sub_categories = SubCategory::get();
+        return view('authenticated.bulletinboard.post_create', compact('main_categories','sub_categories'));
     }
 
     public function postCreate(PostFormRequest $request){
+
+        $request->validate([
+            'post_title' => 'required|string|max:100',
+            'post' => 'required|string|max:5000',
+            ]);
+
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
@@ -58,6 +65,11 @@ class PostsController extends Controller
     }
 
     public function postEdit(Request $request){
+        $request->validate([
+            'post_title' => 'required|string|max:100',
+            'post' => 'required|string|max:5000',
+            ]);
+
         Post::where('id', $request->post_id)->update([
             'post_title' => $request->post_title,
             'post' => $request->post_body,
@@ -71,6 +83,11 @@ class PostsController extends Controller
     }
     public function mainCategoryCreate(Request $request){
         MainCategory::create(['main_category' => $request->main_category_name]);
+        return redirect()->route('post.input');
+    }
+
+    public function subCategoryCreate(Request $request){
+        SubCategory::create(['sub_category' => $request->sub_category_name]);
         return redirect()->route('post.input');
     }
 

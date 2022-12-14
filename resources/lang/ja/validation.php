@@ -168,6 +168,8 @@ return [
         'sex' => '性別',
         'role' => '権限',
         'password' => 'パスワード',
+        'post_title' => 'タイトル',
+        'post' => '投稿内容',
 
      ],
 
