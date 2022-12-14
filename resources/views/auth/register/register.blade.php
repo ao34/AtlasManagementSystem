@@ -23,7 +23,7 @@
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 over_name" name="over_name">
               </div>
-               @if ($errors->has('mail_address'))
+               @if ($errors->has('over_name'))
                 <li>{{$errors->first('over_name')}}</li>
               @endif
             </div>
@@ -32,7 +32,7 @@
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 under_name" name="under_name">
               </div>
-               @if ($errors->has('mail_address'))
+               @if ($errors->has('under_name'))
                 <li>{{$errors->first('under_name')}}</li>
               @endif
             </div>
@@ -43,7 +43,7 @@
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 over_name_kana" name="over_name_kana">
               </div>
-               @if ($errors->has('mail_address'))
+               @if ($errors->has('over_name_kana'))
                 <li>{{$errors->first('over_name_kana')}}</li>
               @endif
             </div>
@@ -52,7 +52,7 @@
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 under_name_kana" name="under_name_kana">
               </div>
-               @if ($errors->has('mail_address'))
+               @if ($errors->has('under_name_kana'))
                 <li>{{$errors->first('under_name_kana')}}</li>
               @endif
             </div>
@@ -74,7 +74,7 @@
           <label style="font-size:13px">女性</label>
           <input type="radio" name="sex" class="sex" value="3">
           <label style="font-size:13px">その他</label>
-           @if ($errors->has('mail_address'))
+           @if ($errors->has('sex'))
                 <li>{{$errors->first('sex')}}</li>
               @endif
         </div>
@@ -161,7 +161,7 @@
             <option value="31">31</option>
           </select>
           <label style="font-size:13px">月</label>
-           @if ($errors->has('mail_address'))
+           @if ($errors->has('birth_day'))
                 <li>{{$errors->first('birth_day')}}</li>
               @endif
         </div>
@@ -175,7 +175,7 @@
           <label style="font-size:13px">教師(英語)</label>
           <input type="radio" name="role" class="other_role role" value="4">
           <label style="font-size:13px" class="other_role">生徒</label>
-           @if ($errors->has('mail_address'))
+           @if ($errors->has('role'))
                 <li>{{$errors->first('role')}}</li>
               @endif
         </div>
@@ -193,7 +193,7 @@
           <div class="border-bottom border-primary">
             <input type="password" class="border-0 w-100 password" name="password">
           </div>
-           @if ($errors->has('mail_address'))
+           @if ($errors->has('password'))
                 <li>{{$errors->first('password')}}</li>
               @endif
         </div>
