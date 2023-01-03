@@ -16,6 +16,6 @@ class Subjects extends Model
     ];
 
     public function users(){
-        return $this->belongsTo('App\Models\Users\User');// リレーションの定義
+        return $this->belongsTo(User::class);// リレーションの定義
     }
 }
