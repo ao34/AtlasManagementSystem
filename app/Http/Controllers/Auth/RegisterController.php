@@ -64,13 +64,17 @@ class RegisterController extends Controller
             'under_name' => 'required|string|max:10',
             'over_name_kana' => 'required|string|max:30|regex:/\A[ァ-ヴー]+\z/u',
             'under_name_kana' => 'required|string|max:30|regex:/\A[ァ-ヴー]+\z/u',
-            'mail_address' => 'required|string|ends_with:email|max:100|unique:users',
+            'mail_address' => 'required|string|email:filter|max:100|unique:users',
             'sex' => 'required',
-            'birth_day' => 'required|before:today|after:2000-01-01',
+            'old_year' => 'required|before:today|after:2000',
+            'old_month' => 'required|before:today|after:01',
+            'old_day' => 'required|before:today|after:01',
             'role' => 'required',
             'password' => 'required|min:8|max:30|confirmed',
+            'password_confirmation' => 'required',
 
             ]);
+
         DB::beginTransaction();
         try{
             $old_year = $request->old_year;
