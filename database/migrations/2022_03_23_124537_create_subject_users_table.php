@@ -20,6 +20,7 @@ class CreateSubjectUsersTable extends Migration
             $table->timestamp('created_at')->nullable()->comment('登録日時');
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('subject_id')->references('id')->on('subjects');
         });
     }
 
@@ -30,6 +31,7 @@ class CreateSubjectUsersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('users');
         Schema::dropIfExists('subject_users');
     }
 }
