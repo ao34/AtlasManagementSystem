@@ -44,13 +44,20 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/bulletin_board/input', 'PostsController@postInput')->name('post.input');
             Route::get('/bulletin_board/like', 'PostsController@likeBulletinBoard')->name('like.bulletin.board');
             Route::get('/bulletin_board/my_post', 'PostsController@myBulletinBoard')->name('my.bulletin.board');
+            // 投稿画面
             Route::post('/bulletin_board/create', 'PostsController@postCreate')->name('post.create');
+            // カテゴリー追加
             Route::post('/create/main_category', 'PostsController@mainCategoryCreate')->name('main.category.create');
             Route::post('/create/sub_category', 'PostsController@subCategoryCreate')->name('sub.category.create');
+            // 投稿詳細
             Route::get('/bulletin_board/post/{id}', 'PostsController@postDetail')->name('post.detail');
+            // 投稿編集
             Route::post('/bulletin_board/edit', 'PostsController@postEdit')->name('post.edit');
+            // 投稿削除
             Route::get('/bulletin_board/delete/{id}', 'PostsController@postDelete')->name('post.delete');
+            // コメント追加
             Route::post('/comment/create', 'PostsController@commentCreate')->name('comment.create');
+            // いいね機能
             Route::post('/like/post/{id}', 'PostsController@postLike')->name('post.like');
             Route::post('/unlike/post/{id}', 'PostsController@postUnLike')->name('post.unlike');
         });
