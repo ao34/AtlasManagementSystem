@@ -48,11 +48,14 @@ $(function () {
     });
   });
 
-  $('.edit-modal-open').on('click',function(){
+  // edit-modal-openをクリックしたらjs-modalをフェードイン
+  $('.edit-modal-open').on('click', function () {
     $('.js-modal').fadeIn();
+    // 変数宣言
     var post_title = $(this).attr('post_title');
     var post_body = $(this).attr('post_body');
     var post_id = $(this).attr('post_id');
+    // 値取得
     $('.modal-inner-title input').val(post_title);
     $('.modal-inner-body textarea').text(post_body);
     $('.edit-modal-hidden').val(post_id);
