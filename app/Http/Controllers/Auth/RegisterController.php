@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserFormRequest;
 use DB;
 
 use App\Models\Users\Subjects;
@@ -57,23 +58,8 @@ class RegisterController extends Controller
         return view('auth.register.register', compact('subjects'));
     }
 
-    public function registerPost(Request $request)
+    public function registerPost(UserFormRequest $request)
     {
-         $request->validate([
-            'over_name' => 'required|string|max:10',
-            'under_name' => 'required|string|max:10',
-            'over_name_kana' => 'required|string|max:30|regex:/\A[ァ-ヴー]+\z/u',
-            'under_name_kana' => 'required|string|max:30|regex:/\A[ァ-ヴー]+\z/u',
-            'mail_address' => 'required|string|email:filter|max:100|unique:users',
-            'sex' => 'required',
-            'old_year' => 'required|before:today|after:2000',
-            'old_month' => 'required|before:today|after:01',
-            'old_day' => 'required|before:today|after:01',
-            'role' => 'required',
-            'password' => 'required|min:8|max:30|confirmed',
-            'password_confirmation' => 'required',
-
-            ]);
 
         DB::beginTransaction();
         try{
