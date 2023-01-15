@@ -51,10 +51,6 @@ class PostsController extends Controller
 
     public function postCreate(PostFormRequest $request){
 
-        $request->validate([
-            'post_title' => 'required|string|max:100',
-            'post' => 'required|string|max:5000',
-            ]);
 
         $post = Post::create([
             'user_id' => Auth::id(),
