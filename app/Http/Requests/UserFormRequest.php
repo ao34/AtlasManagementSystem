@@ -22,23 +22,6 @@ class UserFormRequest extends FormRequest
      * @return array
      *
      */
-    public function getValidatorInstance(){
-
-        // プルダウンで選択された値(= 配列)を取得
-        $datetime = array(); //デフォルト値は空の配列
-        $datetime = array('old_year','old_month','old_day');
-
-        // 日付を作成(ex. 2020-1-20)
-        $birth_day = implode('-', $datetime);
-
-        // rules()に渡す値を追加でセット
-        //     これで、この場で作った変数にもバリデーションを設定できるようになる
-        $this->merge([
-            'birth_day' => $birth_day,
-        ]);
-
-        return parent::getValidatorInstance();
-    }
 
 
     public function rules()
@@ -57,4 +40,14 @@ class UserFormRequest extends FormRequest
            //
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        $birth_day = $this->old_year .'-'. $this->old_day .'-'. $this->old_day ;
+
+        $this->merge([
+        'birth_day' => $birth_day
+        ]);
+    }
+
 }
