@@ -6,8 +6,9 @@
     <div class="">
       <p class="mb-0">カテゴリー</p>
       <select class="w-100" form="postCreate" name="post_category_id">
+        <optgroup label="教科"></optgroup>
         @foreach($main_categories as $main_category)
-        <optgroup label="{{ $main_category->main_category }}"></optgroup>
+        <option label="{{ $main_category->main_category }}"></option>
         <!-- サブカテゴリー表示 -->
         </optgroup>
         @endforeach
@@ -39,15 +40,25 @@
         <p class="m-0">メインカテゴリー</p>
         <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
+        <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">{{ csrf_field() }}</form>
       </div>
       <!-- サブカテゴリー追加 -->
       <div class="">
         <p class="m-0">サブカテゴリー</p>
-        <input type="text" class="w-100" name="sub_category_name" form="subCategoryRequest">
+        @if($errors->first('sub_category'))
+          <span class="error_message">{{ $errors->first('sub_category') }}</span>
+        @endif
+        <form action="/create/sub_category/{{ $main_category->id }}" method="post" id="subCategoryRequest">
+        <select class="w-100" form="subCategoryRequest" name="main_category_id">
+        @foreach($main_categories as $main_category)
+        <option hidden ></option>
+        <option label="{{ $main_category->main_category }}" ></option>
+        @endforeach
+        </select>
+        <input type="text" class="w-100" name="sub_category" form="subCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryRequest">
+        {{ csrf_field() }}</form>
       </div>
-      <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">{{ csrf_field() }}</form>
-      <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryRequest">{{ csrf_field() }}</form>
     </div>
   </div>
   @endcan
