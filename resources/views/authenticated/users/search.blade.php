@@ -43,7 +43,6 @@
       </div>
       <div>
         @if($user->role == 4)
-        <span>選択科目 :</span>
         @endif
       </div>
     </div>
@@ -88,9 +87,9 @@
           </div>
           <div class="selected_engineer">
             <label>選択科目</label>
-            <label>国語</label><input type="checkbox" name="subject" value="国語" form="userSearchRequest">
-            <label>数学</label><input type="checkbox" name="subject" value="数学" form="userSearchRequest">
-            <label>英語</label><input type="checkbox" name="subject" value="英語" form="userSearchRequest">
+                <p><label> 国語<input type="checkbox" name="subject" value="国語" form="userSearchRequest"></label></p>
+                <p><label>数学<input type="checkbox" name="subject" value="数学" form="userSearchRequest"></label></p>
+                <p><label>英語<input type="checkbox" name="subject" value="英語" form="userSearchRequest"></label></p>
           </div>
         </div>
       </div>
