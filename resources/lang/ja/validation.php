@@ -170,6 +170,7 @@ return [
         'password' => 'パスワード',
         'post_title' => 'タイトル',
         'post' => '投稿内容',
+        'comment' => 'コメント',
 
      ],
 
