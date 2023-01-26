@@ -48,16 +48,17 @@
         @if($errors->first('sub_category'))
           <span class="error_message">{{ $errors->first('sub_category') }}</span>
         @endif
-        <form action="/create/sub_category/{{ $main_category->id }}" method="post" id="subCategoryRequest">
-        <select class="w-100" form="subCategoryRequest" name="main_category_id">
-        @foreach($main_categories as $main_category)
-        <option hidden ></option>
-        <option label="{{ $main_category->main_category }}" ></option>
-        @endforeach
-        </select>
-        <input type="text" class="w-100" name="sub_category" form="subCategoryRequest">
-        <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryRequest">
-        {{ csrf_field() }}</form>
+        <form action="/create/sub_category" method="post" id="subCategoryRequest">
+          <select class="w-100" name="main_category_id">
+            @foreach($main_categories as $main_category)
+              <option hidden >---</option>
+              <option value="{{ $main_category->id }}">{{ $main_category->main_category }}</option>
+            @endforeach
+          </select>
+          <input type="text" class="w-100" name="sub_category">
+          <input type="submit" value="追加" class="w-100 btn btn-primary p-0">
+        {{ csrf_field() }}
+        </form>
       </div>
     </div>
   </div>
