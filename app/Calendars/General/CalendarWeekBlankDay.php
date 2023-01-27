@@ -1,6 +1,8 @@
 <?php
 namespace App\Calendars\General;
 
+// 前月、次月を出力するためのクラス
+// 日カレンダーをカスタマイズして、クラス名とHTMLだけ別の処理になるようなクラスを作成
 class CalendarWeekBlankDay extends CalendarWeekDay{
   function getClassName(){
     return "day-blank";
@@ -10,6 +12,7 @@ class CalendarWeekBlankDay extends CalendarWeekDay{
    * @return
    */
 
+  //  何も出力しないように上書き
    function render(){
      return '';
    }

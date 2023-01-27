@@ -10,10 +10,13 @@ use App\Models\Calendars\Calendar;
 use App\Models\USers\User;
 use Auth;
 use DB;
+use Carbon\Carbon;
+
 
 class CalendarsController extends Controller
 {
     public function show(){
+        // 現時刻を渡して今月を表示
         $calendar = new CalendarView(time());
         return view('authenticated.calendar.general.calendar', compact('calendar'));
     }
@@ -21,8 +24,13 @@ class CalendarsController extends Controller
     public function reserve(Request $request){
         DB::beginTransaction();
         try{
+            // dd($request);
+            // 部数
             $getPart = $request->getPart;
-            $getDate = $request->getData;
+            // 日にち
+            $today = Carbon::today();
+            $getDate = $request->where('getData', '>=', $today)->getData;
+
             $reserveDays = array_filter(array_combine($getDate, $getPart));
             foreach($reserveDays as $key => $value){
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();

@@ -5,6 +5,7 @@ use App\Models\Calendars\ReserveSettings;
 use Carbon\Carbon;
 use Auth;
 
+// その日を出力するためのクラス
 class CalendarWeekDay{
   protected $carbon;
 
@@ -12,19 +13,23 @@ class CalendarWeekDay{
     $this->carbon = new Carbon($date);
   }
 
+  // CSSを当てることが出来るようにクラス名を出力する
   function getClassName(){
+    //「D」を指定すると「Sun」「Mon」などの曜日を省略形式で取得できる
     return "day-" . strtolower($this->carbon->format("D"));
   }
 
   function pastClassName(){
-    return;
+    return '<p class="past-day">' . $this->carbon->format("j"). '日</p>';
   }
 
   /**
    * @return
    */
 
+  //  カレンダーの日の内部を出力する
    function render(){
+    // 「j」を指定すると先頭にゼロをつけない日付けを取得できる
      return '<p class="day">' . $this->carbon->format("j"). '日</p>';
    }
 
@@ -35,17 +40,17 @@ class CalendarWeekDay{
      if($one_part_frame){
        $one_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first()->limit_users;
      }else{
-       $one_part_frame = '0';
+       $one_part_frame = '20';
      }
      if($two_part_frame){
        $two_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first()->limit_users;
      }else{
-       $two_part_frame = '0';
+       $two_part_frame = '20';
      }
      if($three_part_frame){
        $three_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first()->limit_users;
      }else{
-       $three_part_frame = '0';
+       $three_part_frame = '20';
      }
 
      $html = [];
@@ -79,6 +84,7 @@ class CalendarWeekDay{
    }
 
    function authReserveDay(){
+    // 予約した日にちを配列として取り出す
      return Auth::user()->reserveSettings->pluck('setting_reserve')->toArray();
    }
 
