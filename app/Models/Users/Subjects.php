@@ -10,12 +10,11 @@ class Subjects extends Model
 {
     const UPDATED_AT = null;
 
-
     protected $fillable = [
         'subject'
     ];
 
     public function users(){
-        return $this->belongsToMany(User::class);// リレーションの定義
+        return $this->belongsToMany(User::class,'subject_users','subject_id','user_id');// リレーションの定義
     }
 }
