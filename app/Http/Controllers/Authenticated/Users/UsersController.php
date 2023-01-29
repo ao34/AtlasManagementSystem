@@ -23,7 +23,8 @@ class UsersController extends Controller
         $subjects = null;// ここで検索時の科目を受け取る
         $userFactory = new SearchResultFactories();
         $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);
-        $subjects = Subjects::with('users')->get();
+        $subjects = Subjects::all();
+        // dd($subjects);
         return view('authenticated.users.search', compact('users', 'subjects'));
     }
 
