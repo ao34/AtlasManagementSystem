@@ -58,10 +58,10 @@ class CalendarView{
         $html[] = $day->render();
 
 
-        // 第一引数には、検索する値を渡し（今月）、第二引数には、検索対象の配列を渡す（予約した日にち）
-        // もし予約をしてたら
+        // 第一引数には、検索する値を渡し（ymd）、第二引数には、検索対象の配列を渡す（予約した日にち）
+        // 予約日を検索
         if(in_array($day->everyDay(), $day->authReserveDay())){
-          // 予約日を取得し該当の部数を表示の方法
+          // 予約日を取得し予約した部数を表示
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
           if($reservePart == 1){
             $reservePart = "リモ1部";
@@ -71,7 +71,7 @@ class CalendarView{
             $reservePart = "リモ3部";
           }
 
-          // （もし予約をしていて）今月なら
+          // 今月なら
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
             // 日付を受け取って予約する
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
