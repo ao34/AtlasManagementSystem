@@ -34,7 +34,10 @@ class CalendarWeekDay{
    }
 
    function selectPart($ymd){
+    $ymd = $ymd->everyDay();
+    dd($ymd);
      $one_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
+    //  dd($one_part_frame);
      $two_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
      $three_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
      if($one_part_frame){
@@ -75,7 +78,7 @@ class CalendarWeekDay{
      return implode('', $html);
    }
 
-   function getDate(){
+   function getData(){
      return '<input type="hidden" value="'. $this->carbon->format('Y-m-d') .'" name="getData[]" form="reserveParts">';
    }
 
