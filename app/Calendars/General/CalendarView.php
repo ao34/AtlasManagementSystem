@@ -36,33 +36,45 @@ class CalendarView{
 
     // 週の情報を取得
     $weeks = $this->getWeeks();
+    // dd($weeks);
     // 週カレンダーオブジェクトを一週ずつ処理
     foreach($weeks as $week){
       // 週カレンダーオブジェクトを使ってHTMLのクラス名を出力
       $html[] = '<tr class="'.$week->getClassName().'">';
-
       // 週カレンダーオブジェクトから、日カレンダーオブジェクトの配列を取得
       $days = $week->getDays();
+      // dd($days);
       // 日カレンダーオブジェクトをループさせる
       foreach($days as $day){
+        // dd($day); 1日単位
         $startDay = $this->carbon->copy()->format("Y-m-01");
         $toDay = $this->carbon->copy()->format("Y-m-d");
+        // dd($toDay);　今日
 
-        // もし今月なら
+        // もし１日が$day(foreachしている日)以前かつ今日が$day以降なら
         if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){
+          // 過去
           $html[] = '<td class="calendar-td past-day">';
+          $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+
         }else{
-          // クラス名を出力し、<td>の中に日カレンダーを出力
+          // それ以外の未来日はクラス名を出力し、<td>の中に日カレンダーを出力
           $html[] = '<td class="calendar-td '.$day->getClassName().'">';
         }
         $html[] = $day->render();
 
 
-        // 第一引数には、検索する値を渡し（ymd）、第二引数には、検索対象の配列を渡す（予約した日にち）
-        // 予約日を検索
+
+
+
+
+        // 第一引数には、検索する値を渡し（foreachで回してる日）、第二引数には、検索対象の配列を渡す（予約した日にち）
+        // 予約日を検索してあったら
         if(in_array($day->everyDay(), $day->authReserveDay())){
-          // 予約日を取得し予約した部数を表示
+          // 予約日を取得し予約した部数を格納
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
+          // dd($reservePart);
+          // 表示
           if($reservePart == 1){
             $reservePart = "リモ1部";
           }else if($reservePart == 2){
@@ -71,19 +83,21 @@ class CalendarView{
             $reservePart = "リモ3部";
           }
 
-          // 今月なら
-          if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-            // 日付を受け取って予約する
+
+        // もし予約日が１日が$day(foreachしている日)以前かつ今日が$day以降なら
+          if($startDay >= $day->everyDay() && $toDay >= $day->everyDay()){
+            // (予約が入っていない日は)部数を受け取って予約する
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+            // dd($html);
           }else{
-            // 予約している部を表示
-            // モーダルを表示させる
+            // 予約が入っている日は予約している部を表示
+            // キャンセルボタン→モーダルを表示させる
             $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
 
-          // 予約をしていなかったら
+          // 検索して予約日がなかったら
           }else{
             // 予約をしていないのが過去の場合
             if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){
@@ -92,7 +106,7 @@ class CalendarView{
             $html[] = $day->selectPart($day->everyDay());
             }
           }
-        $html[] = $day->getDate();
+        $html[] = $day->getData();
         $html[] = '</td>';
       }
       $html[] = '</tr>';

@@ -24,6 +24,7 @@ class CalendarWeek{
   // 週の開始日〜終了日までを作成する
    function getDays(){
      $days = [];
+
     // 開始日〜終了日
      $startDay = $this->carbon->copy()->startOfWeek();
      $lastDay = $this->carbon->copy()->endOfWeek();
@@ -43,6 +44,7 @@ class CalendarWeek{
         // 今月
         $day = new CalendarWeekDay($tmpDay->copy());
         $days[] = $day;
+        // dd($days);
 
         // 翌月に移動
         $tmpDay->addDay(1);

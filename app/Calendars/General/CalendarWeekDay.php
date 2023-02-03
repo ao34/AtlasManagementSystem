@@ -34,13 +34,17 @@ class CalendarWeekDay{
    }
 
    function selectPart($ymd){
-    $ymd = $ymd->everyDay();
-    dd($ymd);
+    // dd($ymd);
+    // ReserveSettingsから今日の予約を探す
+    // その中の1部の予約を探して格納
      $one_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
     //  dd($one_part_frame);
      $two_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
      $three_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
+
+    //  もし１部だったら
      if($one_part_frame){
+      // 残り人数を格納
        $one_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first()->limit_users;
      }else{
        $one_part_frame = '20';
@@ -59,9 +63,11 @@ class CalendarWeekDay{
      $html = [];
      $html[] = '<select name="getPart[]" class="border-primary" style="width:70px; border-radius:5px;" form="reserveParts">';
      $html[] = '<option value="" selected></option>';
+    //  もし１部の残り人数が０だったら
      if($one_part_frame == "0"){
        $html[] = '<option value="1" disabled>リモ1部(残り0枠)</option>';
      }else{
+      // それ以外は残り人数を格納
        $html[] = '<option value="1">リモ1部(残り'.$one_part_frame.'枠)</option>';
      }
      if($two_part_frame == "0"){
@@ -92,6 +98,7 @@ class CalendarWeekDay{
    }
 
    function authReserveDate($reserveDate){
+    // setting_reserveと$reserveDateが一致する日を返す
      return Auth::user()->reserveSettings->where('setting_reserve', $reserveDate);
    }
 
