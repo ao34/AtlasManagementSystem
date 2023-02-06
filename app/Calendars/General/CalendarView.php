@@ -55,7 +55,6 @@ class CalendarView{
         if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){
           // 過去
           $html[] = '<td class="calendar-td past-day">';
-          $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
 
         }else{
           // それ以外の未来日はクラス名を出力し、<td>の中に日カレンダーを出力
@@ -102,6 +101,7 @@ class CalendarView{
             // 予約をしていないのが過去の場合
             if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){
             $html[] = '<p class="calendar-td">受付終了</p>';
+            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
             }else{
             $html[] = $day->selectPart($day->everyDay());
             }
