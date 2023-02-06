@@ -84,7 +84,7 @@ class CalendarWeekDay{
      return implode('', $html);
    }
 
-   function getData(){
+   function getDate(){
      return '<input type="hidden" value="'. $this->carbon->format('Y-m-d') .'" name="getData[]" form="reserveParts">';
    }
 

@@ -106,7 +106,7 @@ class CalendarView{
             $html[] = $day->selectPart($day->everyDay());
             }
           }
-        $html[] = $day->getData();
+        $html[] = $day->getDate();
         $html[] = '</td>';
       }
       $html[] = '</tr>';
