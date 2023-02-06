@@ -48,8 +48,6 @@ class CalendarWeek{
 
         // 翌月に移動
         $tmpDay->addDay(1);
-                  $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
-
       }
       return $days;
     }
