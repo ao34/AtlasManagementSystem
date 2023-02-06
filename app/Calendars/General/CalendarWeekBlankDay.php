@@ -7,14 +7,13 @@ class CalendarWeekBlankDay extends CalendarWeekDay{
   function getClassName(){
     return "day-blank";
   }
-
   /**
    * @return
    */
 
   //  何も出力しないように上書き
    function render(){
-     return '';
+     return '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
    }
 
    function selectPart($ymd){
