@@ -41,7 +41,6 @@ class CalendarWeekDay{
     //  dd($one_part_frame);
      $two_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
      $three_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
-
     //  もし１部だったら
      if($one_part_frame){
       // 残り人数を格納

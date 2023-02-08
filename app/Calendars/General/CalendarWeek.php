@@ -45,7 +45,6 @@ class CalendarWeek{
         $day = new CalendarWeekDay($tmpDay->copy());
         $days[] = $day;
         // dd($days);
-
         // 翌月に移動
         $tmpDay->addDay(1);
       }

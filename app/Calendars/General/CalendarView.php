@@ -50,9 +50,8 @@ class CalendarView{
         $startDay = $this->carbon->copy()->format("Y-m-01");
         $toDay = $this->carbon->copy()->format("Y-m-d");
         // dd($toDay);　今日
-
         // もし１日が$day(foreachしている日)以前かつ今日が$day以降なら
-        if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){
+        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
           // 過去
           $html[] = '<td class="calendar-td past-day">';
 
@@ -61,12 +60,6 @@ class CalendarView{
           $html[] = '<td class="calendar-td '.$day->getClassName().'">';
         }
         $html[] = $day->render();
-
-
-
-
-
-
         // 第一引数には、検索する値を渡し（foreachで回してる日）、第二引数には、検索対象の配列を渡す（予約した日にち）
         // 予約日を検索してあったら
         if(in_array($day->everyDay(), $day->authReserveDay())){
@@ -81,10 +74,8 @@ class CalendarView{
           }else if($reservePart == 3){
             $reservePart = "リモ3部";
           }
-
-
         // もし予約日が１日が$day(foreachしている日)以前かつ今日が$day以降なら
-          if($startDay >= $day->everyDay() && $toDay >= $day->everyDay()){
+          if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
             // (予約が入っていない日は)部数を受け取って予約する
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
@@ -95,11 +86,10 @@ class CalendarView{
             $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
-
           // 検索して予約日がなかったら
           }else{
             // 予約をしていないのが過去の場合
-            if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){
+            if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
             $html[] = '<p class="calendar-td">受付終了</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
             }else{
