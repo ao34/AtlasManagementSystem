@@ -25,34 +25,34 @@ class CalendarsController extends Controller
         DB::beginTransaction();
         try{
             // dd($request);
-
             // 部数を取得
             $getPart = $request->getPart;
             // dd($getPart);
             $today = Carbon::today();
             // dd($today); OK
-
             // 今日以降の日にちを取得
             $getDate = $request->getData;
             // dd($getDate);
-
-
             // 配列をフィルタリング$getDataをキー,$getPartを値として配列を生成
             $reserveDays = array_filter(array_combine($getDate, $getPart));
-            // var_dump($reserveDays);
+            // dd($reserveDays);
 
             // 日にち=>部数でforeachできる
             foreach($reserveDays as $key => $value){
-                $reserve_settings = new ReserveSettings();
+
+                $reserveDays = new ReserveSettings;
+                $reserveDays->setting_reserve = $key;
+                $reserveDays->setting_part = $value;
+                $reserveDays->save();
+
                 // ReserveSettingsモデルのsetting_reserveと$getDate,setting_partと$getPartが一致する値を探す->idを取得
                 // 誰が何日に何部かの配列ができる
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
-
+                // dd($reserve_settings);
                 // limit_usersをデクリメントする
                 $reserve_settings->decrement('limit_users');
                 // usersリレーションでAuthuserを追加する
                 $reserve_settings->users()->attach(Auth::id());
-                $reserve_settings->save();
             }
             DB::commit();
         }catch(\Exception $e){
