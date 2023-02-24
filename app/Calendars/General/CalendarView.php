@@ -107,7 +107,7 @@ class CalendarView{
     $html[] = '<div class="modal js-modal">';
     $html[] = '<div class="modal__bg js-modal-close"></div>';
     $html[] = '<div class="modal__content">';
-    $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">'.csrf_field().
+    $html[] = '<form action="'. route('deleteParts') .'method="post" id="reserveParts">'.csrf_field().
     $html[] = '<input type="hidden" class="id" name="id" value="">';
     $html[] = '<p >予約日：';
     $html[] = '<span class="modal_day" value=""></span>';
@@ -115,7 +115,7 @@ class CalendarView{
     $html[] = '<p>時間：'. $reservePart .'</p>';
     $html[] = '<p>上記の予約をキャンセルしてよろしいですか？</p>';
     $html[] = '<button type="" class="js-modal-close btn btn-primary p-0 w-75" style="font-size:12px">閉じる</button>';
-    $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" style="font-size:12px">キャンセル</button>';
+    $html[] = '<button type="input" class="btn btn-danger p-0 w-75" style="font-size:12px">キャンセル</button>';
     $html[] = '</form>';
     $html[] = '</div>';
     $html[] = '</div>';

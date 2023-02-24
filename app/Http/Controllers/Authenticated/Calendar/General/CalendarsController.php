@@ -68,7 +68,7 @@ class CalendarsController extends Controller
             ->where('id' , $id)
             ->delete();
 
-        return redirect('authenticated.calendar.general.calendar');
+        return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
 
 }
