@@ -2,6 +2,7 @@
 namespace App\Calendars\Admin;
 use Carbon\Carbon;
 use App\Models\Users\User;
+use App\Models\Calendars\ReserveSettings;
 
 class CalendarView{
   private $carbon;
@@ -45,7 +46,31 @@ class CalendarView{
           $html[] = '<td class="border '.$day->getClassName().'">';
         }
         $html[] = $day->render();
-        $html[] = $day->dayPartCounts($day->everyDay());
+        // $html[] = $day->dayPartCounts($day->everyDay());
+
+  // 追加
+        $html[] = '<div class="">';
+        if($day->everyDay()){
+          if($startDay <= $day->everyDay() || $toDay <= $day->everyDay()){
+            $countOne = ReserveSettings::where('setting_part', 1)->count();
+            $countTwo = ReserveSettings::where('setting_part', 2)->count();
+            $countThree = ReserveSettings::where('setting_part', 3)->count();
+            $id =
+            // dd($);
+            // id,data,partを渡す
+            $html[] = '<p class="d-flex m-0 p-0"><a href="/calendar/">1部</a></p>';
+            $html[] = '<span class="d-flex m-0 p-0">'. $countOne .'</span>';
+
+            $html[] = '<p class="d-flex m-0 p-0"><a href="/calendar">2部</a></p>';
+            $html[] = '<span class="d-flex m-0 p-0">'. $countTwo .'</span>';
+
+            $html[] = '<p class="d-flex m-0 p-0"><a href="/calendar">3部</a></p>';
+            $html[] = '<span class="d-flex m-0 p-0">'. $countThree .'</span>';
+          }
+        }
+        $html[] = '</div>';
+  // ここまで
+
         $html[] = '</td>';
       }
       $html[] = '</tr>';
