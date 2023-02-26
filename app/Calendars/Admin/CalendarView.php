@@ -55,10 +55,12 @@ class CalendarView{
             $countOne = ReserveSettings::where('setting_part', 1)->count();
             $countTwo = ReserveSettings::where('setting_part', 2)->count();
             $countThree = ReserveSettings::where('setting_part', 3)->count();
-            $id =
-            // dd($);
+            $part = ReserveSettings::first();
+            // dd($part->setting_part);
             // id,data,partを渡す
-            $html[] = '<p class="d-flex m-0 p-0"><a href="/calendar/">1部</a></p>';
+            dd($day->date);
+
+            $html[] = '<p class="d-flex m-0 p-0"><a href="/calendar/'. $day .'/'.$part->setting_part .'">1部</a></p>';
             $html[] = '<span class="d-flex m-0 p-0">'. $countOne .'</span>';
 
             $html[] = '<p class="d-flex m-0 p-0"><a href="/calendar">2部</a></p>';
