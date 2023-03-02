@@ -5,10 +5,10 @@ $(function () {
     $('.js-modal').fadeIn();
     // 押されたボタンから取得し変数へ格納
     var day = $(this).attr('day');
-    var id = $(this).attr('id');
+    var part = $(this).attr('part');
     // モーダルの中身へ渡す
     $('.modal_day').text(day);
-    $('.id').val(id);
+    $('.modal_part').text(part);
 
     return false;
   });

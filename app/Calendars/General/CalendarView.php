@@ -83,9 +83,10 @@ class CalendarView{
             // 予約が入っている日は予約している部を表示
             // キャンセルボタン→モーダルを表示させる
             // dd($id);
-            $html[] = '<button type="submit" class="js-modal-open btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" day="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" id="'. $day->authReserveDate($day->everyDay())->first()->id .'">'. $reservePart .'</button>';
-            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+            $html[] = '<button type="submit" class="js-modal-open btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" day="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" part="'. $day->authReserveDate($day->everyDay())->first()->setting_part .'">'. $reservePart .'</button>';
+            $html[] = '<input type="hidden" name="getPart[]" value="" form=deleteParts">';
           }
+
           // 検索して予約日がなかったら
           }else{
             // 予約をしていないのが過去の場合
@@ -104,22 +105,28 @@ class CalendarView{
     $html[] = '</tbody>';
     $html[] = '</table>';
     $html[] = '</div>';
+    $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">'.csrf_field().'</form>';
+
+// 追加
     $html[] = '<div class="modal js-modal">';
     $html[] = '<div class="modal__bg js-modal-close"></div>';
     $html[] = '<div class="modal__content">';
-    $html[] = '<form action="'. route('deleteParts') .'method="post" id="reserveParts">'.csrf_field().
-    $html[] = '<input type="hidden" class="id" name="id" value="">';
+
+    $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">'.csrf_field().
     $html[] = '<p >予約日：';
-    $html[] = '<span class="modal_day" value=""></span>';
+    $html[] = '<span class="modal_day" name="data" value=""></span>';
     $html[] = '</p>';
-    $html[] = '<p>時間：'. $reservePart .'</p>';
+    $html[] = '<p>時間：リモ';
+    $html[] = '<span class="modal_part" name="part" value=""></span>';
+    $html[] = '部</p>';
     $html[] = '<p>上記の予約をキャンセルしてよろしいですか？</p>';
     $html[] = '<button type="" class="js-modal-close btn btn-primary p-0 w-75" style="font-size:12px">閉じる</button>';
-    $html[] = '<button type="input" class="btn btn-danger p-0 w-75" style="font-size:12px">キャンセル</button>';
+    $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" style="font-size:12px">キャンセル</button>';
     $html[] = '</form>';
+
     $html[] = '</div>';
     $html[] = '</div>';
-    $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">'.csrf_field().'</form>';
+// ここまで
 
     return implode('', $html);
   }
