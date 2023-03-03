@@ -65,20 +65,20 @@ class CalendarsController extends Controller
     public function delete(Request $request)
     {
         // dd($request);
-            $getPart = $request->part;
+            $deletePart = $request->part;
             $today = Carbon::today();
-            $getDate = $request->data;
+            $deleteDate = $request->data;
             // $reserveDays = array_filter(array_combine($getDate, $getPart));
             // dd($reserveDays);
 
-            $reserve_settings = ReserveSettings::where('setting_reserve', $getDate)->where('setting_part', $getPart)->first();
+            $delete_settings = ReserveSettings::where('setting_reserve', $deleteDate)->where('setting_part', $deletePart)->first();
 
             \DB::table('reserve_settings')
-                ->where('id' , $reserve_settings->id)
+                ->where('id' , $delete_settings->id)
                 ->delete();
 
-            $reserve_settings->increment('limit_users');
-            $reserve_settings->users()->detach(Auth::id());
+            $delete_settings->increment('limit_users');
+            $delete_settings->users()->detach(Auth::id());
 
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
