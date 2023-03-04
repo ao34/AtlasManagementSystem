@@ -43,7 +43,7 @@ class UserFormRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $birth_day = $this->old_year .'-'. $this->old_day .'-'. $this->old_day ;
+        $birth_day = $this->old_year .'-'. $this->old_month .'-'. $this->old_day ;
 
         $this->merge([
         'birth_day' => $birth_day
