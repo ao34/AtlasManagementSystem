@@ -73,10 +73,6 @@ class CalendarsController extends Controller
 
             $delete_settings = ReserveSettings::where('setting_reserve', $deleteDate)->where('setting_part', $deletePart)->first();
 
-            \DB::table('reserve_settings')
-                ->where('id' , $delete_settings->id)
-                ->delete();
-
             $delete_settings->increment('limit_users');
             $delete_settings->users()->detach(Auth::id());
 
