@@ -34,27 +34,27 @@ class CalendarWeekDay{
     if($one_part){
 
       $html[] = '<p class="day_part m-0 pt-1"><a href="'. route('calendar.admin.detail', ['id' => $one_part->id, 'data' => $one_part->setting_reserve, 'part' => $one_part->setting_part]) .'">1部</a></p>';
-      $html[] = '<span class="d-flex m-0 p-0">'. $one_part->limit_users .'</span>';
+      $html[] = '<span class="d-flex m-0 p-0">'. $one_part->users->count() .'</span>';
       // dd($one_part);
     }else{
       $html[] = '<p class="day_part m-0 pt-1"><a href="">1部</a></p>';
-      $html[] = '<span class="d-flex m-0 p-0"></span>';
+      $html[] = '<span class="d-flex m-0 p-0">0</span>';
     }
 
     if($two_part){
       $html[] = '<p class="day_part m-0 pt-1"><a href="">2部</a></p>';
-      $html[] = '<span class="d-flex m-0 p-0">'. $two_part->limit_users .'</span>';
+      $html[] = '<span class="d-flex m-0 p-0">'. $two_part->users->count() .'</span>';
     }else{
       $html[] = '<p class="day_part m-0 pt-1"><a href="">2部</a></p>';
-      $html[] = '<span class="d-flex m-0 p-0"></span>';
+      $html[] = '<span class="d-flex m-0 p-0">0</span>';
     }
 
     if($three_part){
       $html[] = '<p class="day_part m-0 pt-1"><a href="">3部</a></p>';
-      $html[] = '<span class="d-flex m-0 p-0">'. $three_part->limit_users .'</span>';
+      $html[] = '<span class="d-flex m-0 p-0">'. $three_part->users->count() .'</span>';
     }else{
       $html[] = '<p class="day_part m-0 pt-1"><a href="">3部</a></p>';
-      $html[] = '<span class="d-flex m-0 p-0"></span>';
+      $html[] = '<span class="d-flex m-0 p-0">0</span>';
     }
     $html[] = '</div>';
 
