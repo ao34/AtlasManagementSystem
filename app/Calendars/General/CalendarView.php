@@ -84,7 +84,7 @@ class CalendarView{
             // キャンセルボタン→モーダルを表示させる
             // dd($id);
             $html[] = '<button type="submit" class="js-modal-open btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" day="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" part="'. $day->authReserveDate($day->everyDay())->first()->setting_part .'">'. $reservePart .'</button>';
-            $html[] = '<input type="hidden" name="getPart[]" value="" form=deleteParts">';
+            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
 
           // 検索して予約日がなかったら
@@ -106,10 +106,6 @@ class CalendarView{
     $html[] = '</table>';
     $html[] = '</div>';
     $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">'.csrf_field().'</form>';
-
-// 追加
-// ここまで
-
     return implode('', $html);
   }
 
