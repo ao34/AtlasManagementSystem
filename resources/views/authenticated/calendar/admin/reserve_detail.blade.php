@@ -7,17 +7,19 @@
     <div class="h-75 border">
       <table class="">
         <tr class="text-center">
-          <th class="w-25">ID
-            <td></td>
-          </th>
-          <th class="w-25">名前
-            <td></td>
-          </th>
+          <th class="w-25">ID</th>
+          <th class="w-25">名前</th>
+          <th class="w-25">場所</th>
         </tr>
-        <tr class="text-center">
-          <td class="w-25"></td>
-          <td class="w-25"></td>
-        </tr>
+        @foreach($reservePersons as $reservePerson)
+          @foreach($reservePerson->users as $detail)
+            <tr class="text-center">
+              <td class="w-25">{{ $detail->id }}</td>
+              <td class="w-25">{{ $detail->over_name }}{{ $detail->under_name }}</td>
+              <td class="w-25">リモート</td>
+            </tr>
+          @endforeach
+        @endforeach
       </table>
     </div>
   </div>
