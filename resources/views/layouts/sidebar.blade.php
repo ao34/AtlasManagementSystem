@@ -21,15 +21,15 @@
   <div class="d-flex">
     <div class="sidebar">
       @section('sidebar')
-      <p><i class="fas fa-home"></i><a href="{{ route('top.show') }}">トップ</a></p>
-      <p><i class="fas fa-door-open"></i><a href="/logout">ログアウト</a></p>
-      <p><i class="fas fa-calendar-alt"></i><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
+      <p><a href="{{ route('top.show') }}"><i class="fas fa-home"></i>トップ</a></p>
+      <p><a href="/logout"><i class="fas fa-door-open"></i>ログアウト</a></p>
+      <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}"><i class="fas fa-calendar-alt"></i>スクール予約</a></p>
         @can('admin')
-        <p><i class="fas fa-user-cog"></i><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
-        <p><i class="fas fa-edit"></i><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
+        <p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}"><i class="fas fa-user-cog"></i>スクール予約確認</a></p>
+        <p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}"><i class="fas fa-edit"></i>スクール枠登録</a></p>
         @endcan
-      <p><i class="fas fa-comments"></i><a href="{{ route('post.show') }}">掲示板</a></p>
-      <p><i class="fas fa-search"></i><a href="{{ route('user.show') }}">ユーザー検索</a></p>
+      <p><a href="{{ route('post.show') }}"><i class="fas fa-comments"></i>掲示板</a></p>
+      <p><a href="{{ route('user.show') }}"><i class="fas fa-search"></i>ユーザー検索</a></p>
       @show
     </div>
     <div class="main-container">

@@ -6,7 +6,7 @@
     <div class="w-75 m-auto border" style="border-radius:5px;">
       <!-- カレンダータイトル -->
       <p class="text-center">{{ $calendar->getTitle() }}</p>
-      <div class="">
+      <div class="" style="border-radius:5px;">
       <!-- カレンダー表示 -->
         {!! $calendar->render() !!}
       </div>

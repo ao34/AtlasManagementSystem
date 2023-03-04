@@ -22,13 +22,15 @@ a {
 
 /* サイドバー */
 .sidebar {
-  width: 170px;
+  width: 200px;
   height: 100vh;
   background-color: #03AAD2;
   font-weight: bold;
+  padding-top: 20px;
+  padding-left: 10px;
 }
 
-.sidebar p a:hover {
+.sidebar a:hover {
   color: #fff;
   background-color: blue;
   text-decoration: none;
@@ -40,6 +42,7 @@ a {
 
 .sidebar p a {
   color: #FFF;
+  display: block;
 }
 
 /* トップページ */
@@ -49,6 +52,10 @@ a {
 }
 
 /* スクール予約関連 */
+.table {
+  table-layout: fixed;
+}
+
 .day-blank {
   background: #D3D3D3;
 }
@@ -86,16 +93,12 @@ a {
   justify-content: space-around;
 }
 
-.conform-area {
-  display: flex;
-}
-
-.conform-area p {
-  justify-content: space-around;
-}
-
 .adjust-table-btn {
   width: 70%;
+}
+
+.text-left p {
+  justify-content: space-around;
 }
 
 /* モーダル */

@@ -30,31 +30,25 @@ class CalendarWeekDay{
     $three_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
     // dd($one_part);
 
-    $html[] = '<div class="text-left conform-area">';
+    $html[] = '<div class="text-left">';
     if($one_part){
 
-      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="'. route('calendar.admin.detail', ['id' => $one_part->id, 'data' => $one_part->setting_reserve, 'part' => $one_part->setting_part]) .'">1部</a></p>';
-      $html[] = '<p class="day_part d-flex m-0 p-0">'. $one_part->users->count() .'</p>';
+      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="'. route('calendar.admin.detail', ['id' => $one_part->id, 'data' => $one_part->setting_reserve, 'part' => $one_part->setting_part]) .'">1部</a>'. $one_part->users->count() .'</p>';
       // dd($one_part);
     }else{
-      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">1部</a></p>';
-      $html[] = '<p class="day_part d-flex m-0 p-0">0</p>';
+      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">1部</a>0</p>';
     }
 
     if($two_part){
-      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">2部</a></p>';
-      $html[] = '<p class="day_part d-flex m-0 p-0">'. $two_part->users->count() .'</p>';
+      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">2部</a>'. $two_part->users->count() .'</p>';
     }else{
-      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">2部</a></p>';
-      $html[] = '<p class="day_part d-flex m-0 p-0">0</p>';
+      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">2部</a>0</p>';
     }
 
     if($three_part){
-      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">3部</a></p>';
-      $html[] = '<p class="day_part d-flex m-0 p-0">'. $three_part->users->count() .'</p>';
+      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">3部</a>'. $three_part->users->count() .'</p>';
     }else{
-      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">3部</a></p>';
-      $html[] = '<p class="day_part d-flex m-0 p-0">0</p>';
+      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">3部</a>0</p>';
     }
     $html[] = '</div>';
 
