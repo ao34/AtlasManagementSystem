@@ -24,6 +24,7 @@ class Post extends Model
     }
 
     public function subCategories(){
+        return $this->belongsToMany('App\Models\Categories\SubCategory');
         // リレーションの定義
     }
 

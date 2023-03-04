@@ -18,6 +18,9 @@ class CreateSubCategoriesTable extends Migration
             $table->integer('main_category_id')->index()->comment('メインカテゴリーid');
             $table->string('sub_category', 60)->index()->comment('サブカテゴリー');
             $table->timestamp('created_at')->nullable()->comment('登録日時');
+
+            $table->foreign('main_category_id')->references('id')->on('main_categories');
+
         });
     }
 

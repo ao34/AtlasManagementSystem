@@ -16,12 +16,22 @@ li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* サイドバー */
 .sidebar {
-  width: 150px;
+  width: 170px;
   height: 100vh;
   background-color: #03AAD2;
   font-weight: bold;
+}
+
+.sidebar p a:hover {
+  color: #fff;
+  background-color: blue;
+  text-decoration: none;
 }
 
 .main-container {
@@ -73,6 +83,14 @@ li {
 }
 
 .adjust-area p {
+  justify-content: space-around;
+}
+
+.conform-area {
+  display: flex;
+}
+
+.conform-area p {
   justify-content: space-around;
 }
 

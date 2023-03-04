@@ -19,7 +19,7 @@ class PostsController extends Controller
 {
     public function show(Request $request){
         $posts = Post::with('user', 'postComments')->get();
-        $categories = MainCategory::get();
+        $categories = MainCategory::with('subCategories')->get();
         $like = new Like;
         $post_comment = new Post;
         if(!empty($request->keyword)){
@@ -28,7 +28,8 @@ class PostsController extends Controller
             ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
         }else if($request->category_word){
             $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
+            $posts =Post::with('user', 'postComments')->get();
+            // ↑↑whereHasつかう
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
@@ -37,6 +38,7 @@ class PostsController extends Controller
             $posts = Post::with('user', 'postComments')
             ->where('user_id', Auth::id())->get();
         }
+        // dd($posts);
         return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
     }
 
@@ -52,13 +54,17 @@ class PostsController extends Controller
     }
 
     public function postCreate(PostFormRequest $request){
-
-
+// dd($request);
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+
+        $post_id = Post::findOrFail($post->id);
+        $sub_id = $request->post_category_id;
+        // dd($sub_id);
+        $post_id->subCategories()->attach($sub_id);
         return redirect()->route('post.show');
     }
 
