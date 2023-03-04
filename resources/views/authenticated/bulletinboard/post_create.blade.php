@@ -5,12 +5,11 @@
   <div class="post_create_area border w-50 m-5 p-5">
     <div class="">
       <p class="mb-0">カテゴリー</p>
-      <select class="w-100">
+      <select class="w-100" form="postCreate" name="post_category_id">
           @foreach($main_categories as $main_category)
             <optgroup label="{{$main_category->main_category}}"></optgroup>
                 @foreach($main_category->subCategories as $sub_category)
-                  <option label="{{ $sub_category->sub_category }}"></option>
-                  <input type="hidden" value="{{ $sub_category->id }}" form="postCreate" name="post_category_id">
+                  <option label="{{ $sub_category->sub_category }}" value="{{ $sub_category->id }}" ></option>
                 @endforeach
           @endforeach
       </select>
