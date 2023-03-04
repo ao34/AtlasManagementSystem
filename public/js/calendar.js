@@ -9,6 +9,8 @@ $(function () {
     // モーダルの中身へ渡す
     $('.modal_day').text(day);
     $('.modal_part').text(part);
+    $('.modal_day').val(day);
+    $('.modal_part').val(part);
 
     return false;
   });
