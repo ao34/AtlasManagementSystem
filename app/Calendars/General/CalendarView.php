@@ -76,7 +76,7 @@ class CalendarView{
         // もし予約日が１日が$day(foreachしている日)以前かつ今日が$day以降なら
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
             // (予約が入っていない日は)部数を受け取って予約する
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
+            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">'. $reservePart.'参加</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
             // dd($html);
           }else{
