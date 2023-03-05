@@ -171,6 +171,8 @@ return [
         'post_title' => 'タイトル',
         'post' => '投稿内容',
         'comment' => 'コメント',
+        'main_category' => 'メインカテゴリー',
+
 
      ],
 

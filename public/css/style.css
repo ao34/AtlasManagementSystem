@@ -177,8 +177,8 @@ a {
   border-radius: 10px;
 }
 
-.post_bottom_area {
-  justify-content: end;
+.tag {
+  margin-right: auto;
 }
 
 .like_btn,
