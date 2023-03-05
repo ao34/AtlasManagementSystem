@@ -21,17 +21,19 @@
 <div class="modal__bg js-modal-close"></div>
 <div class="modal__content">
 <form action="/delete/calendar" method="post" id="deleteParts">
-<p >予約日：
+<p class="modal-text" >予約日：
 <span class="modal_day" name="data" value=""></span>
 <input type="hidden" class="modal_day" name="data" value="" form="deleteParts">
 </p>
-<p>時間：リモ
+<p class="modal-text">時間：リモ
 <span class="modal_part" name="part" value=""></span>
 <input type="hidden" class="modal_part" name="part" value="" form="deleteParts">
 部</p>
-<p>上記の予約をキャンセルしてよろしいですか？</p>
-<button type="" class="js-modal-close btn btn-primary p-0 w-75" style="font-size:12px">閉じる</button>
-<button type="submit" class="btn btn-danger p-0 w-75" style="font-size:12px">キャンセル</button>
+<p class="modal-text">上記の予約をキャンセルしてよろしいですか？</p>
+<div class="modal-btn">
+  <button type="" class="js-modal-close btn btn-primary d-flex " style="font-size:12px">閉じる</button>
+  <button type="submit" class="btn btn-danger d-flex" style="font-size:12px">キャンセル</button>
+</div>
 {{ csrf_field() }}
 </form>
 </div>

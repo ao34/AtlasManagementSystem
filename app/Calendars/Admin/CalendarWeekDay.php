@@ -40,13 +40,13 @@ class CalendarWeekDay{
     }
 
     if($two_part){
-      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">2部</a>'. $two_part->users->count() .'</p>';
+      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="'. route('calendar.admin.detail', ['id' => $two_part->id, 'data' => $two_part->setting_reserve, 'part' => $two_part->setting_part]) .'">2部</a>'. $two_part->users->count() .'</p>';
     }else{
       $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">2部</a>0</p>';
     }
 
     if($three_part){
-      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">3部</a>'. $three_part->users->count() .'</p>';
+      $html[] = '<p class="day_part d-flex m-0 p-0"><a href="'. route('calendar.admin.detail', ['id' => $three_part->id, 'data' => $three_part->setting_reserve, 'part' => $three_part->setting_part]) .'">3部</a>'. $three_part->users->count() .'</p>';
     }else{
       $html[] = '<p class="day_part d-flex m-0 p-0"><a href="">3部</a>0</p>';
     }

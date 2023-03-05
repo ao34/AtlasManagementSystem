@@ -143,6 +143,15 @@ a {
   width: 60%;
 }
 
+.modal-btn {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-text {
+  padding-left: 160px;
+}
+
 /* 掲示板 */
 .sub_categories {
   display: none;
@@ -169,7 +178,7 @@ a {
 }
 
 .post_bottom_area {
-  justify-content: space-between;
+  justify-content: end;
 }
 
 .like_btn,
@@ -313,43 +322,4 @@ a {
 
 .subject_inner {
   display: none;
-}
-
-/* モーダル */
-.modal {
-  display: none;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-.modal__bg {
-  background: rgba(0, 0, 0, 0.8);
-  height: 100vh;
-  position: absolute;
-  width: 100%;
-}
-
-.modal__content {
-  background: #fff;
-  left: 50%;
-  padding: 40px;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  height: 40%;
-  border-radius: 6px;
-  text-align: end;
-}
-
-.modal__content form {
-  height: 80%;
-}
-
-textarea.modal_post {
-  height: 100%;
-  width: 100%;
-  padding: 10px;
 }

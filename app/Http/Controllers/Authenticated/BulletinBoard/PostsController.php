@@ -12,6 +12,7 @@ use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
 use App\Http\Requests\CommentFormRequest;
+use App\Http\Requests\MainCategoryFormRequest;
 use App\Http\Requests\SubCategoryFormRequest;
 use Auth;
 
@@ -89,8 +90,9 @@ class PostsController extends Controller
         Post::findOrFail($id)->delete();
         return redirect()->route('post.show');
     }
-    public function mainCategoryCreate(Request $request){
-        MainCategory::create(['main_category' => $request->main_category_name]);
+    public function mainCategoryCreate(MainCategoryFormRequest $request){
+        MainCategory::create([
+            'main_category' => $request->main_category]);
         return redirect()->route('post.input');
     }
 
